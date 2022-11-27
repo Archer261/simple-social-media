@@ -2,8 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
+
+dotenv.config()
 
 const app = express();
 
@@ -14,7 +17,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
-const CONNECTION_URL = 'mongodb+srv://kingViewtiful3:XerluVOzs3wkR8EK@cluster0.hcbwoe0.mongodb.net/?retryWrites=true&w=majority';
+console.log(process.env.CONNECTION_URL)
+const CONNECTION_URL = process.env.CONNECTION_URL
 
 const PORT = process.env.PORT || 5000;
 
